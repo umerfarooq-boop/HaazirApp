@@ -59,7 +59,7 @@
             <h1>HaazirApp Email Verification</h1>
         </div>
         <div class="content">
-            <p>Dear User,</p>
+            <p>Dear User, {{ $user->name }}</p>
             <p>Thank you for signing up with HaazirApp! To complete your registration, please verify your email address using the One-Time Password (OTP) below:</p>
             <h2>{{ $otp }}</h2>
             <p>This OTP is valid for <strong>10 minutes</strong>. Please enter it on the verification page to proceed.</p>

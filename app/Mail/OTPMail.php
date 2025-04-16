@@ -2,24 +2,26 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Contracts\Queue\ShouldQueue;
+
 
 class OTPMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $otp;
+    public $user;
     /**
      * Create a new message instance.
      */
-    public function __construct($otp)
+    public function __construct(User $user)
     {
-        $this->otp = $otp;
-    }   
+        $this->user = $user;
+    }
 
     /**
      * Get the message envelope.
@@ -27,7 +29,7 @@ class OTPMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'O T P Mail',
+            subject: 'Send Otp Mail',
         );
     }
 
@@ -41,6 +43,10 @@ class OTPMail extends Mailable
         );
     }
 
+    public function build() {
+        return $this->subject('Your OTP for Login')->view('email.signupotp')->with('otp', $this->user->otp);
+    }
+
     /**
      * Get the attachments for the message.
      *
@@ -49,12 +55,5 @@ class OTPMail extends Mailable
     public function attachments(): array
     {
         return [];
-    }
-
-    public function build()
-    {
-        return $this->subject('Your OTP Code')
-                    ->view('emails.signupotp')
-                    ->with('otp', $this->otp);
     }
 }

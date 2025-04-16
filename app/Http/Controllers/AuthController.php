@@ -18,7 +18,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name'     => 'required|string|max:255',
             'role'     => 'required|string|max:255',
-            'email'    => 'required|string|email|max:255|unique:users',
+            'email' => 'required',
             'password' => 'required|string|min:6',
         ]);
     
@@ -27,23 +27,21 @@ class AuthController extends Controller
         }
     
         $otp = rand(100000, 999999);
-    
         $user = User::create([
-            'name'     => $request->name,
-            'role'     => $request->role,
-            'email'    => $request->email,
-            'password' => Hash::make($request->password),
-            'otp'      => $otp,
-            'otp_expires_at' => Carbon::now()->addMinutes(10),
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password), 
+            'role' => $request->role,
+            'otp' => $otp,
+            'otp_expires_at' => Carbon::now()->addMinutes(1)
         ]);
-    
-        // Send the OTP email
-        Mail::to($user->email)->send(new OTPMail($otp));
-    
+
+        Mail::to($user->email)->send(new OTPMail($user));
         return response()->json([
-            'message' => 'User registered. Please verify your email using the OTP sent.',
-            'user' => $user
-        ]);
+            'success' => true,
+            'message' => 'Otp send on Your Email',
+            'User' => $user,
+        ], 200);
     }
     
 
