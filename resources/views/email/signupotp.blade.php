@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verify Your Email - HaazirApp</title>
+    <title>Verify Your Email - Skill-Link</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -56,19 +56,19 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>HaazirApp Email Verification</h1>
+            <h1>Skill-Link Email Verification</h1>
         </div>
         <div class="content">
             <p>Dear User, {{ $user->name }}</p>
-            <p>Thank you for signing up with HaazirApp! To complete your registration, please verify your email address using the One-Time Password (OTP) below:</p>
+            <p>Thank you for signing up with Skill-Link! To complete your registration, please verify your email address using the One-Time Password (OTP) below:</p>
             <h2>{{ $otp }}</h2>
             <p>This OTP is valid for <strong>10 minutes</strong>. Please enter it on the verification page to proceed.</p>
             <p>If you did not request this email, please disregard it. Your account will not be activated without email verification.</p>
-            <p>Best regards,<br>The HaazirApp Team</p>
+            <p>Best regards,<br>The Skill-Link Team</p>
         </div>
         <div class="footer">
             <p>Need help? Visit our <a href="{{ url('/support') }}">Support Center</a> or contact us at <a href="mailto:support@haazirapp.com">support@haazirapp.com</a>.</p>
-            <p>&copy; {{ date('Y') }} HaazirApp. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} Skill-Link. All rights reserved.</p>
         </div>
     </div>
 </body>
