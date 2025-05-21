@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PlumberAppointmentController;
 
 
 
@@ -19,10 +20,20 @@ Route::middleware('auth:api')->group(function () {
 });
 
 // 🔵 Profile routes (protected by JWT)
-Route::middleware(['jwt.auth'])->group(function () {
-    // Main profile resource routes: index, show, store, update, destroy
-    Route::resource('/profile', ProfileController::class, 'store');
+// Route::middleware(['jwt.auth'])->group(function () {
+//     Route::resource('/profile', ProfileController::class, 'store');
+//     Route::resource('/plumber_appointment', PlumberAppointmentController::class);
+//     Route::get('/check-profile/{userId}', [ProfileController::class, 'checkProfile']);
+// });
 
-    // 🔥 Special route to check if profile exists
+Route::middleware(['jwt.auth'])->group(function () {
+    // Resource route for ProfileController with only 'store' action
+    Route::post('/profile', [ProfileController::class, 'store']);
+    
+    // Full resource route for PlumberAppointmentController
+    Route::resource('/plumber_appointment', PlumberAppointmentController::class);
+
+    // Route for checking profile by user ID
     Route::get('/check-profile/{userId}', [ProfileController::class, 'checkProfile']);
 });
+
