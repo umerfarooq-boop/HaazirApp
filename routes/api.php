@@ -29,7 +29,7 @@ Route::middleware('auth:api')->group(function () {
 
 Route::middleware(['jwt.auth'])->group(function () {
     // Resource route for ProfileController with only 'store' action
-    Route::post('/profile', [ProfileController::class, 'store']);
+    Route::resource('/profile', ProfileController::class);
     
     // Full resource route for PlumberAppointmentController
     Route::resource('/plumber_appointment', PlumberAppointmentController::class);
