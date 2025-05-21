@@ -31,6 +31,7 @@ class PlumberAppointmentController extends Controller
     {
         $plumber = new PlumberAppointment();
         $plumber->plumber_p_id = $request->plumber_p_id;
+        $plumber->user_p_id = $request->user_p_id;
         $plumber->description = $request->description;
         $plumber->status = 'inactive';
         $plumber->created_by = Auth::id();

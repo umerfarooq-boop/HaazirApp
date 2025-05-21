@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('plumber_appointments', function (Blueprint $table) {
+        Schema::create('electrician_appointments', function (Blueprint $table) {
             $table->id();
-            $table->integer('plumber_p_id');
+            $table->integer('electrician_p_id');
             $table->integer('user_p_id');
-            $table->string('p_problem_image');
+            $table->string('e_problem_image');
             $table->string('description');
             $table->string('status')->default('disabled');
             $table->unsignedBigInteger('created_by');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('plumber_appointments');
+        Schema::dropIfExists('electrician_appointments');
     }
 };

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('location');
             $table->string('contact_number');
             $table->string('user_image');
+            $table->integer('created_by');
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PlumberAppointmentController;
+use App\Http\Controllers\ElectricianAppointmentController;
 
 
 
@@ -32,6 +33,7 @@ Route::middleware(['jwt.auth'])->group(function () {
     
     // Full resource route for PlumberAppointmentController
     Route::resource('/plumber_appointment', PlumberAppointmentController::class);
+    Route::resource('/electrician_appointment', ElectricianAppointmentController::class);
 
     // Route for checking profile by user ID
     Route::get('/check-profile/{userId}', [ProfileController::class, 'checkProfile']);
