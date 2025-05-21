@@ -56,15 +56,20 @@ class ElectricianAppointmentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ElectricianAppointment $electricianAppointment)
+    public function show(string $id)
     {
-        //
+        $Appointment = ElectricianAppointment::with('electrician_user')->where('electrician_p_id',$id)->get();
+        return response()->json([
+            'success' => true,
+            'message' => 'Record Found',
+            'Appointment' => $Appointment
+        ],201);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ElectricianAppointment $electricianAppointment)
+    public function edit(string $id)
     {
         //
     }
@@ -72,7 +77,7 @@ class ElectricianAppointmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ElectricianAppointment $electricianAppointment)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -80,7 +85,7 @@ class ElectricianAppointmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ElectricianAppointment $electricianAppointment)
+    public function destroy(string $id)
     {
         //
     }

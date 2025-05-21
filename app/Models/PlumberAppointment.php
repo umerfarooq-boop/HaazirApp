@@ -14,4 +14,8 @@ class PlumberAppointment extends Model
         'status',
         'created_by',
     ];    
+
+    public function plumber_user(){
+        return $this->belongsTo(UserProfile::class,'plumber_p_id');
+    }
 }

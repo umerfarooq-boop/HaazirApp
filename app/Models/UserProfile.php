@@ -12,5 +12,14 @@ class UserProfile extends Model
         'location',
         'contact_number',
         'user_image'
-    ];    
+    ];   
+    
+    public function electrician(){
+        return $this->hasMany(ElectricianAppointment::class,'user_p_id','id');
+    }
+
+    public function plumber(){
+        return $this->hasMany(PlumberAppointment::class,'user_p_id','id');
+    }
+    
 }
