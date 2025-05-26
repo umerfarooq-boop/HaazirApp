@@ -34,14 +34,13 @@ Route::middleware(['jwt.auth'])->group(function () {
     
     // Full resource route for PlumberAppointmentController
     Route::resource('/plumber_appointment', PlumberAppointmentController::class);
-    Route::resource('/electrician_appointment', ElectricianAppointmentController::class);
 
+    Route::post('/Accpet_P_Appointment/{id}',[PlumberAppointmentController::class,'Accpet_P_Appointment']);
+    Route::post('/Accpet_E_Appointment/{id}',[ElectricianAppointmentController::class,'Accpet_E_Appointment']);
+    Route::resource('/electrician_appointment', ElectricianAppointmentController::class);
     // Route for checking profile by user ID
     Route::get('/check-profile/{userId}', [ProfileController::class, 'checkProfile']);
 });
-Route::post('/Accpet_P_Appointment/{id}',[PlumberAppointmentController::class,'Accpet_P_Appointment']);
-Route::post('/Accpet_E_Appointment/{id}',[ElectricianAppointmentController::class,'Accpet_E_Appointment']);
 
-Route::resource('/news_image',NewsImageController::class);
 
 

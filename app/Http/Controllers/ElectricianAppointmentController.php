@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ElectricianProfile;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ElectricianAppointment;
 
@@ -87,10 +88,12 @@ class ElectricianAppointmentController extends Controller
     public function show(string $id)
     {
         $Appointment = ElectricianAppointment::with('electrician_user')->where('electrician_p_id',$id)->get();
+        $electrician = ElectricianProfile::where('id',$id)->first();
         return response()->json([
             'success' => true,
             'message' => 'Record Found',
-            'Appointment' => $Appointment
+            'Appointment' => $Appointment,
+            'electrician' => $electrician
         ],201);
     }
 

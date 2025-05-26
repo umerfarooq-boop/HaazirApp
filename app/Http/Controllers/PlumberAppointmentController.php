@@ -59,10 +59,12 @@ class PlumberAppointmentController extends Controller
     public function show(string $id)
     {
         $Appointment = PlumberAppointment::where('plumber_p_id',$id)->get();
+        $plumber = PlumberProfile::where('id',$id)->first();
         return response()->json([
             'success' => true,
             'message' => 'Record Found',
-            'Appointment' => $Appointment
+            'Appointment' => $Appointment,
+            'plumber' => $plumber
         ],201);
     }
 
