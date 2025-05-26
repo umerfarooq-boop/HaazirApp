@@ -53,6 +53,34 @@ class ElectricianAppointmentController extends Controller
         ],201);
     }
 
+    public function Accpet_E_Appointment(Request $request,$id){
+        $appointment = ElectricianAppointment::where('id',$id)->first();
+        // return $appointment
+        if (!$appointment) {
+            return response([
+                'success' => false,
+                'message' => 'Appointment not found'
+            ], 404);
+        }
+    
+        if ($request->status === 'accept' || $request->status === 'reject') {
+            $appointment->status = $request->status;
+            $appointment->save();
+    
+            return response([
+                'success' => true,
+                'message' => 'Status updated successfully',
+                'appointment' => $appointment
+            ], 200);
+        }
+    
+        return response([
+            'success' => false,
+            'message' => 'Invalid status provided',
+            'app' => $appointment
+        ], 400);
+    }
+
     /**
      * Display the specified resource.
      */

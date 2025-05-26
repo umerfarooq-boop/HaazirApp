@@ -66,6 +66,24 @@ class PlumberAppointmentController extends Controller
         ],201);
     }
 
+    public function Accpet_P_Appointment(Request $request,$id){
+        $appointment = PlumberAppointment::find($id);
+        if($request->status === 'accept'){
+            $appointment->status = 'accept';
+        }
+        
+        if($request->status === 'reject'){
+            $appointment->status = 'reject';
+        }
+        $appointment->save();
+
+        return response([
+            'success' => true,
+            'message' => 'Status Update',
+            'appointment' => $appointment
+        ],201);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

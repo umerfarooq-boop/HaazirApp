@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\NewsImageController;
 use App\Http\Controllers\PlumberAppointmentController;
 use App\Http\Controllers\ElectricianAppointmentController;
 
@@ -38,4 +39,9 @@ Route::middleware(['jwt.auth'])->group(function () {
     // Route for checking profile by user ID
     Route::get('/check-profile/{userId}', [ProfileController::class, 'checkProfile']);
 });
+Route::post('/Accpet_P_Appointment/{id}',[PlumberAppointmentController::class,'Accpet_P_Appointment']);
+Route::post('/Accpet_E_Appointment/{id}',[ElectricianAppointmentController::class,'Accpet_E_Appointment']);
+
+Route::resource('/news_image',NewsImageController::class);
+
 

@@ -173,22 +173,14 @@ class ProfileController extends Controller
     {
         $profile = Profile::with(['userProfile','electricianProfile','plumberProfile'])->where('profile_id', $userId)->get();
 
+        $user = UserProfile::where('created_by',Auth::id())->get();
+
         return response()->json([
             'success' => true,
             'message' => 'Record Found',
-            'profile' => $profile
+            'profile' => $profile,
+            'user' => $user
         ],201);
-
-        // if ($profile) {
-        //     return response()->json([
-        //         'profile_exists' => true,
-        //         'profile' => $profile,
-        //     ]);
-        // } else {
-        //     return response()->json([
-        //         'profile_exists' => false,
-        //     ]);
-        // }
     }
 
     // Create button where upload image of problem and send this same request to role wise ServiceProvider like Electrician

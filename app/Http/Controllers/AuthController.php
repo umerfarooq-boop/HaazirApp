@@ -70,6 +70,8 @@ class AuthController extends Controller
         return response()->json(['message' => 'OTP verified successfully. You can now login.']);
     }
 
+
+
     // public function login(Request $request)
     // {
     //     $credentials = $request->only('email', 'password');
